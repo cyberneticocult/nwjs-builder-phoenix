@@ -422,16 +422,20 @@ export class Builder {
 
     protected async fixLinuxMode(targetDir: string, appRoot: string, pkg: any, config: BuildConfig) {
 
-        const path = resolve(targetDir, 'nw');
+        const nwPath = resolve(targetDir, 'nw');
+        debug('Fixing linux binary permissions for file : ', nwPath);
+        await chmod(nwPath, 0o744);
 
-        await chmod(path, 0o744);
+        const chromeCrashpadHandlerPath = resolve(targetDir, 'chrome_crashpad_handler');
+        debug('Fixing linux binary permissions for file : ', chromeCrashpadHandlerPath);
+        await chmod(chromeCrashpadHandlerPath, 0o744);
 
     }
 
     protected renameLinuxApp(targetDir: string, appRoot: string, pkg: any, config: BuildConfig) {
 
         const src = resolve(targetDir, 'nw');
-        const dest = resolve(targetDir, `${ pkg.name }`);
+        const dest = resolve(targetDir, `${pkg.name}`);
 
         return rename(src, dest);
 
