@@ -5,11 +5,12 @@
   "main": "./dist/lib/index.js",
   "types": "./dist/lib/index.d.ts",
   "bin": {
-    "build": "./dist/bin/build.js",
-    "run": "./dist/bin/run.js"
+    "nwbuild": "./dist/bin/build.js",
+    "nwrun": "./dist/bin/run.js"
   },
   "scripts": {
     "prepublish": "npm run build",
+    "postinstall": "npm run build",
     "test": "npm run build && ava",
     "coverage": "nyc ava",
     "build": "tsc --declaration",
