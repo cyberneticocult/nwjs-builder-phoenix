@@ -9,8 +9,8 @@
     "nwrun": "./dist/bin/run.js"
   },
   "scripts": {
-    "prepublish": "npm run nwbuild",
-    "test": "npm run nwbuild && ava",
+    "prepublish": "npm run build",
+    "test": "npm run build && ava",
     "coverage": "nyc ava",
     "build": "tsc --declaration",
     "release": "npm test && standard-version"
